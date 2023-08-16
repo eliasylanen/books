@@ -1,0 +1,19 @@
+# General
+.prettierignore
+.gitignore
+.env*
+*.puml
+*.sh
+.editorconfig
+
+# JS
+node_modules/
+*.lock
+.npmrc
+.pa11yci
+
+# Tests
+/coverage
+*.snap
+
+*.svg
