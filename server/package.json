@@ -1,0 +1,17 @@
+{
+	"name": "server",
+	"private": true,
+	"version": "1.0.0",
+	"type": "module",
+	"scripts": {},
+	"dependencies": {
+		"@trpc/server": "^10.37.1",
+		"cors": "^2.8.5",
+		"sqlite": "^5.0.1",
+		"sqlite3": "^5.1.6"
+	},
+	"devDependencies": {
+		"@types/cors": "^2.8.13",
+		"typescript": "^5.0.2"
+	}
+}
