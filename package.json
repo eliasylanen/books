@@ -12,7 +12,9 @@
 		"ban": "ban",
 		"format": "prettier --write .",
 		"lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
-		"start:server": "npm run start --workspace server"
+		"start": "concurrently \"npm:start:*\"",
+		"start:client": "npm start --workspace client",
+		"start:server": "npm start --workspace server"
 	},
 	"devDependencies": {
 		"@commitlint/cli": "^17.7.1",
@@ -20,11 +22,15 @@
 		"@typescript-eslint/eslint-plugin": "^6.0.0",
 		"@typescript-eslint/parser": "^6.0.0",
 		"ban-sensitive-files": "^1.9.19",
+		"concurrently": "^8.2.0",
 		"eslint": "^8.45.0",
 		"eslint-plugin-react-hooks": "^4.6.0",
 		"eslint-plugin-react-refresh": "^0.4.3",
 		"husky": "^8.0.3",
 		"prettier": "^3.0.2",
 		"typescript": "^5.0.2"
+	},
+	"dependencies": {
+		"date-fns": "^2.30.0"
 	}
 }
