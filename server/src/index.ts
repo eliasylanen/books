@@ -1,8 +1,10 @@
 import { createHTTPServer } from '@trpc/server/adapters/standalone';
-import { backendPort } from '../common/config.js';
-import { appRouter } from '../common/trpc/server.js';
+import cors from 'cors';
+import { backendPort } from './config.js';
+import { appRouter } from './trpc.js';
 
 const server = createHTTPServer({
+	middleware: cors(),
 	router: appRouter,
 });
 
