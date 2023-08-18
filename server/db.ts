@@ -1,6 +1,7 @@
+import path from 'node:path';
 import { open } from 'sqlite';
 import sqlite3 from 'sqlite3';
-import { dbPath, defaultTable } from '../common/config';
+import { dbPath, defaultTable } from '../common/config.js';
 
 export interface Book {
 	title: string;
@@ -9,7 +10,7 @@ export interface Book {
 }
 
 export const db = await open({
-	filename: dbPath,
+	filename: path.resolve(dbPath),
 	driver: sqlite3.cached.Database,
 });
 

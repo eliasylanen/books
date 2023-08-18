@@ -1,5 +1,5 @@
 import { initTRPC } from '@trpc/server';
-import { getAllBooks } from '../../server/db';
+import { getAllBooks } from '../../server/db.js';
 
 const { router, procedure: publicProcedure } = initTRPC.create();
 

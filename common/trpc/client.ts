@@ -1,10 +1,11 @@
 import { createTRPCProxyClient, httpBatchLink } from '@trpc/client';
 import { AppRouter } from '../../server';
+import { backendUrl } from '../config';
 
 const trpc = createTRPCProxyClient<AppRouter>({
 	links: [
 		httpBatchLink({
-			url: 'http://127.0.0.1:3000',
+			url: backendUrl,
 		}),
 	],
 });
