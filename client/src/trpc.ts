@@ -11,6 +11,16 @@ export const trpc = createTRPCReact<AppRouter>();
 type bookListOptions = ReactQueryOptions['bookList'];
 type bookListInput = RouterInputs['bookList'];
 
-export function usebookList(input: bookListInput, options?: bookListOptions) {
+export function useBookList(input: bookListInput, options?: bookListOptions) {
 	return trpc.bookList.useQuery(input, options);
+}
+
+/**
+ * Not used in this excercise, but here for reference
+ */
+type bookByTitleOptions = ReactQueryOptions['bookByTitle'];
+type bookByTitleInput = RouterInputs['bookByTitle'];
+
+export function useBookByTitle(input: bookByTitleInput, options?: bookByTitleOptions) {
+	return trpc.bookByTitle.useQuery(input, options);
 }

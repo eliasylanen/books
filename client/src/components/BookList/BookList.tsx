@@ -1,20 +1,23 @@
+import format from 'date-fns/format/index.js';
 import { FC, useEffect, useRef, useState } from 'react';
 import { BookFields } from '../../../../server/src/model/Book';
-import { getError } from '../../helpers';
-import { usebookList } from '../../trpc';
+import { useBookList } from '../../trpc';
 import { Book } from '../Book';
+import { Container } from '../Container';
 import { Loading } from '../Loading/Loading';
 import './BookList.css';
 
 export const BookList: FC = () => {
 	const [page, setPage] = useState(1);
+	const [totalBooks, setTotalBooks] = useState(0);
 	const [books, setBooks] = useState<BookFields[]>([]);
 
 	const observer = useRef<IntersectionObserver>();
 	const footerRef = useRef<HTMLElement>(null);
 
-	const { data, error, isLoading, isSuccess, refetch } = usebookList({ page }, { enabled: false });
+	const { data, error, isFetching, refetch } = useBookList({ page }, { enabled: !totalBooks });
 
+	// Attach the observer to the footer, so that new books are fetched when the footer is visible
 	useEffect(() => {
 		observer.current = new IntersectionObserver(
 			(entries) => {
@@ -35,28 +38,33 @@ export const BookList: FC = () => {
 		};
 	}, [refetch]);
 
-	if (!error && !isLoading && isSuccess && !!data?.length) {
+	if (!error && !isFetching && !!data?.books.length) {
 		setPage((prev) => prev + 1);
-		setBooks((prev) => [...prev, ...data]);
+		setTotalBooks(data.total);
+		setBooks((prev) => [...prev, ...data.books]);
 	}
 
-	if (error) {
-		alert(getError(error));
-	}
-
-	if (isSuccess && data.length === 0) observer.current?.disconnect();
+	if (!!totalBooks && books.length >= totalBooks) observer.current?.disconnect();
 
 	return (
 		<>
 			<main>
-				<div className="books-list">
+				<section className="books-list">
 					{books.map((book, index) => (
 						<Book key={index} {...book} />
 					))}
-				</div>
-				{isLoading && <Loading />}
+				</section>
+				<Container>
+					{isFetching && <Loading />}
+					{error && (
+						<>
+							<h4>Failed to fetch, please try again</h4>
+							<button onClick={() => refetch()}>Try again</button>
+						</>
+					)}
+				</Container>
 			</main>
-			<footer ref={footerRef}></footer>
+			<footer ref={footerRef}>&copy; Elias Ylänen {format(Date.now(), 'yyyy')}</footer>
 		</>
 	);
 };

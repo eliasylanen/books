@@ -15,6 +15,11 @@ const isDate = (date?: unknown): date is Date => {
 	return isValid(new Date(date as string));
 };
 
+/**
+ * Converts a Book entity into a BookFields object,
+ * which has all the fields existint and pre-formatted.
+ */
+
 export const getBookFields = (book?: Book): BookFields => {
 	return {
 		title: (book?.title ?? '').split('/').join(' / '),

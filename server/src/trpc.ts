@@ -17,8 +17,8 @@ export const appRouter = router({
 			),
 		)
 		.query(async ({ input = {} }) => {
-			const books = await getBooks(input);
-			return books;
+			const res = await getBooks(input);
+			return res;
 		}),
 	bookByTitle: publicProcedure.input(z.string()).query(async ({ input }) => {
 		const book = await getBookByTitle(input);
