@@ -1,0 +1,32 @@
+services:
+  client:
+    container_name: books_client
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        - WORKSPACE=client
+        - PORT=5173
+    ports:
+      - 5173:5173
+    env_file:
+      - .env
+    # Enable if using Docker for development
+    # volumes:
+    #   - ./client:/app/client
+
+  server:
+    container_name: books_server
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        - WORKSPACE=server
+        - PORT=3000
+    ports:
+      - 3000:3000
+    env_file:
+      - .env
+    # Enable if using Docker for development
+    # volumes:
+    #   - ./server:/app/server

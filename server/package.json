@@ -9,6 +9,7 @@
 	"dependencies": {
 		"@trpc/server": "^10.37.1",
 		"cors": "^2.8.5",
+		"dotenv": "^16.3.1",
 		"sqlite": "^5.0.1",
 		"sqlite3": "^5.1.6",
 		"tsc-watch": "^6.0.4",
