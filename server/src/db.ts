@@ -2,7 +2,7 @@ import path from 'node:path';
 import { open } from 'sqlite';
 import sqlite3 from 'sqlite3';
 import { dbPath, defaultTable } from './config.js';
-import { Book, getBookFields } from './model/Book.js';
+import { Book, BookFields, getBookFields } from './model/Book.js';
 
 const db = await open({
 	filename: path.resolve(dbPath),
@@ -33,6 +33,15 @@ export const getBooks = async ({ page = 1, offset = 0 }: GetBooksArgs) => {
 	);
 
 	return { total, books: data.map(getBookFields) };
+};
+
+export const createBook = async ({ title, author, timestamp }: BookFields) => {
+	await db.run(
+		`INSERT INTO ${defaultTable} (title, author, timestamp) VALUES (?, ?, ?)`,
+		title,
+		author,
+		timestamp,
+	);
 };
 
 export const getBookByTitle = async (title: string) => {

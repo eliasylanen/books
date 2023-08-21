@@ -1,0 +1,50 @@
+dialog {
+	border: none;
+	padding: 1.5rem;
+	width: fit-content;
+	min-width: 19rem;
+}
+
+dialog::backdrop {
+	background-color: rgba(250, 250, 250, 0.25);
+}
+
+label {
+	display: flex;
+	gap: 1rem;
+	justify-content: space-between;
+	margin-bottom: 0.75rem;
+}
+
+label input {
+	flex: 0 1 auto;
+}
+
+form button {
+	padding: 0.25rem 0.5rem;
+	margin: 0.75rem 1rem 0 0;
+}
+
+.floating {
+	position: fixed;
+	bottom: 1rem;
+	right: 1rem;
+	border-radius: 50%;
+	padding: 0.5rem;
+	width: 3rem;
+	height: 3rem;
+	border: 1px solid #ccc;
+	font-size: 1.5rem;
+}
+
+.floating:hover::before {
+	content: 'Add book';
+	font-size: 0.75rem;
+	position: absolute;
+	top: 0.75rem;
+	right: 125%;
+	background-color: #888;
+	display: block;
+	width: 4.25rem;
+	padding: 0.25rem;
+}

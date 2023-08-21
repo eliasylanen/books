@@ -2,6 +2,7 @@ import format from 'date-fns/format/index.js';
 import { FC, useEffect, useRef, useState } from 'react';
 import { BookFields } from '../../../../server/src/model/Book';
 import { useBookList } from '../../trpc';
+import { AddBook } from '../AddBook';
 import { Book } from '../Book';
 import { Container } from '../Container';
 import { Loading } from '../Loading/Loading';
@@ -9,13 +10,17 @@ import './BookList.css';
 
 export const BookList: FC = () => {
 	const [page, setPage] = useState(1);
+	const [offset, setOffset] = useState(0);
 	const [totalBooks, setTotalBooks] = useState(0);
 	const [books, setBooks] = useState<BookFields[]>([]);
 
 	const observer = useRef<IntersectionObserver>();
 	const footerRef = useRef<HTMLElement>(null);
 
-	const { data, error, isFetching, refetch } = useBookList({ page }, { enabled: !totalBooks });
+	const { data, error, isFetching, refetch } = useBookList(
+		{ page, offset },
+		{ enabled: !totalBooks },
+	);
 
 	// Attach the observer to the footer, so that new books are fetched when the footer is visible
 	useEffect(() => {
@@ -63,6 +68,7 @@ export const BookList: FC = () => {
 						</>
 					)}
 				</Container>
+				<AddBook setBooks={setBooks} setOffset={setOffset} />
 			</main>
 			<footer ref={footerRef}>&copy; Elias Ylänen {format(Date.now(), 'yyyy')}</footer>
 		</>

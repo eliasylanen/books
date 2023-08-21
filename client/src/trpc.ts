@@ -8,18 +8,22 @@ export type RouterOutputs = inferRouterOutputs<AppRouter>;
 
 export const trpc = createTRPCReact<AppRouter>();
 
-type bookListOptions = ReactQueryOptions['bookList'];
 type bookListInput = RouterInputs['bookList'];
+type bookListOptions = ReactQueryOptions['bookList'];
 
 export function useBookList(input: bookListInput, options?: bookListOptions) {
 	return trpc.bookList.useQuery(input, options);
 }
 
+export function useCreateBook() {
+	return trpc.createBook.useMutation();
+}
+
 /**
  * Not used in this excercise, but here for reference
  */
-type bookByTitleOptions = ReactQueryOptions['bookByTitle'];
 type bookByTitleInput = RouterInputs['bookByTitle'];
+type bookByTitleOptions = ReactQueryOptions['bookByTitle'];
 
 export function useBookByTitle(input: bookByTitleInput, options?: bookByTitleOptions) {
 	return trpc.bookByTitle.useQuery(input, options);
