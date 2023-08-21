@@ -1,0 +1,15 @@
+name: install-and-cache-dependencies
+description: Sets up the environment and caches dependencies
+
+runs:
+  using: 'composite'
+  steps:
+    - name: Setup Node
+      uses: actions/setup-node@v3
+      with:
+        node-version-file: '.nvmrc'
+        cache: npm
+
+    - name: Install packages
+      run: npm ci
+      shell: bash

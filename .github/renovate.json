@@ -1,0 +1,14 @@
+{
+	"extends": ["config:base"],
+	"branchPrefix": "deps/",
+	"reviewers": ["eliasylanen"],
+	"schedule": ["after 10pm every weekday", "before 5am every weekday", "every weekend"],
+	"timezone": "Europe/Helsinki",
+	"packageRules": [
+		{
+			"matchUpdateTypes": ["minor", "patch", "pin", "digest"],
+			"automerge": true,
+			"automergeType": "branch"
+		}
+	]
+}

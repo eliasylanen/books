@@ -14,7 +14,10 @@
 		"lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
 		"start": "concurrently \"npm:start:*\"",
 		"start:client": "npm start --workspace client",
-		"start:server": "npm start --workspace server"
+		"start:server": "npm start --workspace server",
+		"tsc": "concurrently \"npm:tsc:*\"",
+		"tsc:client": "npm run tsc --workspace client",
+		"tsc:server": "npm run tsc --workspace server"
 	},
 	"devDependencies": {
 		"@commitlint/cli": "^17.7.1",
