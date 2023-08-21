@@ -1,7 +1,5 @@
 FROM node:18-alpine
 
-USER ${USER:-"1000:1000"}
-
 ARG WORKSPACE
 ARG PORT
 
@@ -18,4 +16,4 @@ EXPOSE $PORT
 
 ENV WORKSPACE=$WORKSPACE
 
-CMD npm run start:${WORKSPACE} -- --host
+CMD npm run start:${WORKSPACE}
