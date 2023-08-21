@@ -17,11 +17,13 @@
 		"start:server": "npm start --workspace server",
 		"tsc": "concurrently \"npm:tsc:*\"",
 		"tsc:client": "npm run tsc --workspace client",
-		"tsc:server": "npm run tsc --workspace server"
+		"tsc:server": "npm run tsc --workspace server",
+		"test": "playwright test"
 	},
 	"devDependencies": {
 		"@commitlint/cli": "^17.7.1",
 		"@commitlint/config-conventional": "^17.7.0",
+		"@playwright/test": "^1.37.1",
 		"@typescript-eslint/eslint-plugin": "^6.0.0",
 		"@typescript-eslint/parser": "^6.0.0",
 		"ban-sensitive-files": "^1.9.19",

@@ -13,4 +13,34 @@ jobs:
       - name: Setup environment
         uses: ./.github/actions/install-and-cache-dependencies
 
-      - run: npm run tsc
+      - name: Check types
+        run: npm run tsc
+
+  test:
+    name: Run E2E tests
+
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 18
+
+      - name: Setup environment
+        uses: ./.github/actions/install-and-cache-dependencies
+
+      - name: Install Playwright Browsers
+        run: npx playwright install --with-deps
+
+      - name: Run Playwright tests
+        run: npm run test
+        env:
+          DB_PATH: ${{ secrets.DB_PATH }}
+      - uses: actions/upload-artifact@v3
+        if: failure()
+        with:
+          name: playwright-report
+          path: tests/results
+          retention-days: 30

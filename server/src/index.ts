@@ -1,5 +1,3 @@
-import 'dotenv/config';
-
 import { createHTTPServer } from '@trpc/server/adapters/standalone';
 import cors from 'cors';
 import { backendPort } from './config.js';
