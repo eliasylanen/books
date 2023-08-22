@@ -1,5 +1,7 @@
 # Book list
 
+[![Test project](https://github.com/eliasylanen/books/actions/workflows/main.yml/badge.svg)](https://github.com/eliasylanen/books/actions/workflows/main.yml)
+
 An excercise app using various newer technologies to test if they're worth using in actual projects.
 
 ## Tech stack
