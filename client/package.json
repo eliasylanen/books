@@ -10,7 +10,7 @@
 		"tsc": "tsc -p tsconfig.json --noEmit"
 	},
 	"dependencies": {
-		"@tanstack/react-query": "^4.32.6",
+		"@tanstack/react-query": "^5.0.0",
 		"@trpc/client": "^10.37.1",
 		"@trpc/react-query": "^10.37.1",
 		"@trpc/server": "^10.37.1",
