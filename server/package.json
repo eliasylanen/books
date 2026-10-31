@@ -13,7 +13,7 @@
 		"sqlite": "^5.0.1",
 		"sqlite3": "^5.1.6",
 		"tsc-watch": "^6.0.4",
-		"zod": "^3.22.1"
+		"zod": "^4.0.0"
 	},
 	"devDependencies": {
 		"@types/cors": "^2.8.13"
